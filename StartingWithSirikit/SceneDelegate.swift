@@ -14,9 +14,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        if let userAct = connectionOptions.userActivities.first{
+            dealWithUserActivities(userActivity: userAct, isContinuing: false)
+        }
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
@@ -47,7 +47,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
+    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        dealWithUserActivities(userActivity: userActivity, isContinuing: true)
+    }
+    
+    fileprivate func openSecondVC() {
+        let secondVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "second") as! SecondViewController
+        let navController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navController") as! UINavigationController
+        self.window!.rootViewController = navController
+        navController.pushViewController(secondVC, animated: true)
+        self.window!.makeKeyAndVisible()
+    }
+    
+    func dealWithUserActivities(userActivity: NSUserActivity, isContinuing: Bool) {
+        switch userActivity.activityType {
+        case SiriActivitiesType.openSecondVCActivity.rawValue:
+                openSecondVC()
+            break
+        default:
+            break
+        }
+    }
 
 }
 

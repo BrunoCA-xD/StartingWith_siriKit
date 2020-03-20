@@ -13,8 +13,8 @@ import MobileCoreServices
 
 class SiriActivities {
     public static func openSecondVCActivity(thumbnail: UIImage?) -> NSUserActivity {
-        let activity = NSUserActivity(activityType: "siriActivities.openSecondVC")
-        activity.persistentIdentifier = NSUserActivityPersistentIdentifier("siriActivities.openSecondVCopenSecondVC")
+        let activity = NSUserActivity(activityType: SiriActivitiesType.openSecondVCActivity.rawValue)
+        activity.persistentIdentifier = NSUserActivityPersistentIdentifier(SiriActivitiesType.openSecondVCActivity.rawValue)
         
         activity.isEligibleForSearch = true
         activity.isEligibleForPrediction = true
@@ -30,4 +30,7 @@ class SiriActivities {
         
         return activity
     }
+}
+enum SiriActivitiesType: String  {
+    case openSecondVCActivity = "siriActivities.openSecondVC"
 }

@@ -39,7 +39,7 @@
         <!--Second View Controller-->
         <scene sceneID="HXn-ch-79w">
             <objects>
-                <viewController id="gU4-GG-Ala" customClass="SecondViewController" customModule="StartingWithSirikit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="second" id="gU4-GG-Ala" customClass="SecondViewController" customModule="StartingWithSirikit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ukp-WH-k7Z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -70,7 +70,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Ydg-6o-MvU">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="h3u-38-Y2u" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navController" automaticallyAdjustsScrollViewInsets="NO" id="h3u-38-Y2u" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="owW-J9-fcS">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
