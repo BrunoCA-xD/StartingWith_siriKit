@@ -14,6 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        // gets the userActivity if there is one and call our func 
         if let userAct = connectionOptions.userActivities.first{
             dealWithUserActivities(userActivity: userAct, isContinuing: false)
         }
@@ -53,10 +54,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     fileprivate func openSecondVC() {
+        // Loads SecondViewController from main.storyboard
         let secondVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "second") as! SecondViewController
+        // Loads the Navigation Controller from main.storyboard
         let navController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "navController") as! UINavigationController
+        // sets the initial window to navigation controller, otherwise it would lose the navigation items (like back button)
         self.window!.rootViewController = navController
+        // navigate to the secondVC
         navController.pushViewController(secondVC, animated: true)
+        // turns the app visible
         self.window!.makeKeyAndVisible()
     }
     

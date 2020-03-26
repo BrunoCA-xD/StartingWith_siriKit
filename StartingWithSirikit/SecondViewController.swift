@@ -34,16 +34,24 @@ class SecondViewController: UIViewController {
     
     func prepareSiriButton() {
         
+        //set the horizontal content hugging to 250 (defaultLow)
         siriButton.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        
+        //Turn off the autolayout constraints because we gonna do by our own
         siriButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        //Add the button to the container
         siriButtonContainer.addSubview(siriButton)
         
+        //Centralize the button in X axis in the container
         siriButton.centerXAnchor.constraint(equalTo: siriButtonContainer.centerXAnchor).isActive = true
-        siriButtonContainer.heightAnchor.constraint(equalTo: siriButton.heightAnchor).isActive = true
         
-        let openSecondVC = SiriActivities.openSecondVCActivity(thumbnail: nil)
-        let shortcut = INShortcut(userActivity: openSecondVC)
-        siriButton.shortcut = shortcut
+        //Bind the both heights
+        siriButtonContainer.heightAnchor.constraint(equalTo: siriButton.heightAnchor).isActive = true
+
+        //TODO: add shortcut to the button
+        
+        //set the callback of the button
         siriButton.addTarget(self, action: #selector(addToSiri), for: .touchUpInside)
     }
     
@@ -52,10 +60,11 @@ class SecondViewController: UIViewController {
 }
 
 extension SecondViewController: INUIAddVoiceShortcutViewControllerDelegate {
+    // when the add action is completed
     func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
-    
+    // when the add action is canceled
     func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
         controller.dismiss(animated: true, completion: nil)
     }
